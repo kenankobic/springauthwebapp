@@ -7,20 +7,53 @@ import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule,
+          MatMenuModule,
+          MatIconModule,
+          MatButtonModule,
+          MatTableModule,
+          MatDividerModule,
+          MatProgressSpinnerModule,
+          MatInputModule,
+          MatCardModule,
+          MatSlideToggleModule,
+          MatSelectModule,
+          MatOptionModule,
+          MatFormField,
+          MatFormFieldModule
+} from '@angular/material';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './routes';
+import { LogoutComponent } from './components/logout/logout.component';
+import { InsideGuard, RoleGuard } from './guards';
+import { AuthService } from './services/auth.service';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GameComponent } from './components/game/game.component';
 
 let Components = [
   LoginComponent,
+  LogoutComponent,
   HomeComponent,
+  GameComponent,
   PageNotFoundComponent
 ];
 
 let MaterialModules = [
   BrowserAnimationsModule,
+  MatToolbarModule,
+  MatCardModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule,
+  MatTableModule,
+  MatDividerModule,
+  MatSlideToggleModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatProgressSpinnerModule,
   MatFormFieldModule,
   MatInputModule
 ];
@@ -33,9 +66,16 @@ let MaterialModules = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModules
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    InsideGuard,
+    RoleGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
